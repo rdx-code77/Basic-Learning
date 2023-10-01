@@ -1,0 +1,38 @@
+import turtle
+
+canvas = turtle.Screen()
+tom = turtle.Turtle()
+tom.speed(1)
+tom.penup()
+tom.goto(0,0)
+
+tom.pendown()
+tom.forward(200)
+tom.right(90)
+tom.forward(50)
+tom.left(135)
+tom.forward(200)
+tom.left(90)
+tom.forward(200)
+tom.left(135)
+tom.forward(50)
+tom.right(90)
+tom.forward(200)
+tom.right(90)
+tom.forward(50)
+tom.left(135)
+tom.forward(200)
+tom.left(90)
+tom.forward(200)
+tom.left(135)
+tom.forward(50)
+tom.right(90)
+
+tom.penup()
+tom.forward(100)
+tom.left(90)
+tom.forward(100)
+tom.right(90)
+
+# Close the Turtle graphics window when clicked
+canvas.exitonclick()
