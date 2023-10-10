@@ -119,7 +119,6 @@ Revisions:
     03:Calculating the average & then displaying it
 '''
 
-
 ### STEP 1: Announce, promt
 # announce
 # print("Program to compute the average of the numbers provided.")
@@ -260,76 +259,528 @@ Revisions:
 # input_text = input("Enter text to analyze ...\n")
 # generate_histogram(input_text)
 
-def normalize(data, norm2Peak=True):
-    # Function to normalize data
-    # Args:
-    #   data: List of numbers representing character counts
-    #   norm2Peak: Boolean, True for normalizing to peak, False for normalizing to area (default is True)
-    # Returns:
-    #   List of floats representing normalized counts
+# def normalize(data, norm2Peak=True):
+#     # Function to normalize data
+#     # Args:
+#     #   data: List of numbers representing character counts
+#     #   norm2Peak: Boolean, True for normalizing to peak, False for normalizing to area (default is True)
+#     # Returns:
+#     #   List of floats representing normalized counts
+#
+#     if norm2Peak:
+#         # Normalize to peak
+#         max_count = max(data)
+#         return [count / max_count for count in data]
+#     else:
+#         # Normalize to area
+#         total_count = sum(data)
+#         return [count / total_count for count in data]
+#
+#
+# def plotBars(counts, alphabet, barLength=20):
+#     # Function to plot histogram bars
+#     # Args:
+#     #   counts: List of numbers representing character counts
+#     #   alphabet: String representing the alphabet
+#     #   barLength: Optional integer specifying the maximum length of a bar (default is 20)
+#
+#     # Find the character(s) with the maximum frequency
+#     max_count = max(counts)
+#     max_chars = [char for char, count in zip(alphabet, counts) if count == max_count]
+#
+#     # Print the histogram
+#     print("Character Histogram:")
+#     for char, count in zip(alphabet, counts):
+#         normalized_count = int(count * barLength)
+#         histogram_bar = '=' * normalized_count
+#         print(f"{char}: {histogram_bar}")
+#
+#     # Print the character(s) with the highest frequency
+#     print("\nCharacter(s) with the highest frequency:")
+#     for char in max_chars:
+#         percent = counts[alphabet.index(char)] / sum(counts) * 100
+#         print(f"{char}: {percent:.2f}%")
+#
+#
+# def main():
+#     # Input text
+#     input_text = input("Enter text to analyze: ")
+#
+#     # Convert input text to uppercase
+#     input_text = input_text.upper()
+#
+#     # Define the alphabet
+#     alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+#
+#     # Initialize a list to store character counts
+#     char_counts = []
+#
+#     # Count the characters in the input text
+#     for char in alphabet:
+#         count = input_text.count(char)
+#         char_counts.append(count)
+#
+#     # Normalize the data to peak
+#     pkNormData = normalize(char_counts, norm2Peak=True)
+#
+#     # Normalize the data to area
+#     aNormData = normalize(char_counts, norm2Peak=False)
+#
+#     # Print the histogram
+#     plotBars(pkNormData, alphabet, barLength=20)
+#
+#
+# if __name__ == "__main__":
+#     main()
+#
+# '''
+# Name: Histogram Analysis
+# Author: Khatija Begum
+# Description: Constructing a histogram for character frequencies in the text.
+# '''
+#
+# '''  Program Begins Here  '''
+#
+# print(" Text Analysis Histogram\n")  # Printing the program name
+#
+# User_text = input("Enter text to analyze ...\n")  # Enter the Text for Analysis
+#
+# '''
+#
+# Defining a function to Construct Histogram for input text given by the User such that whenever this function is called a histogram is generated.
+#
+# bigChar = A String Initialised with zero, 26 times for elements A to Z
+#
+# User_text.upper()is used considering the desired output for this program, we are using upper() method to convert the text entered by user to Upper case.
+#
+# for loop used to iterate each character of the text
+#
+# Method isalpha() used here to ignore non-alphabetic text given by user as it's not required for our program to display non-alphabetic text.
+#
+# index is calculated to store the characters in our list bigChar which is initialized to 0, we take 'A' as starting point for index.
+#
+# Character frequencies is calculates by adding 1 to index of bigChar every time the loop iterates over the text.
+#
+# Highest frequencies are calculated using max() function and printed along with Characters at the end of histogram generation.
+#
+# '''
+#
+#
+# def histogram(User_text):
+#     bigChar = '0' * 26  # Initializing String with 0 to store characters A-Z
+#
+#     User_text = User_text.upper()  # Convert the text to uppercase
+#
+#     for c in User_text:  # Calculate character frequencies in text
+#         if c.isalpha():  # Skip non-alphabetic characters
+#             index = ord(c) - ord('A')  # Calculate the index for A-Z starting from A
+#             bigChar = bigChar[:index] + str(int(bigChar[index]) + 1) + bigChar[
+#                                                                        index + 1:]  # Calculating Character frequencies and storing in String bigChar
+#
+#     for index in range(26):  # Printing the histogram
+#         char = chr(ord('A') + index)  # To print, get the characters A-Z
+#         n = int(bigChar[index])
+#         bar = '=' * n
+#         print(f"{char}: {bar}")
+#
+#     # To Print the character(s) with the Maximum frequency
+#
+#     bigFreq = max(bigChar)  # Finding the maximum frequency of Characters in the Text
+#
+#     print()  # Simply printing to get space between histogram output and max frequency output to get the desired result.
+#
+#     for index in range(26):
+#         char = chr(ord('A') + index)
+#         n = int(bigChar[index])
+#         if n == int(bigFreq):
+#             print(f"{char} was used most ({bigFreq} times)")  # printing Character and Highest frequency using f-string
+#
+#
+# # Function invocation
+# histogram(User_text)
 
-    if norm2Peak:
-        # Normalize to peak
-        max_count = max(data)
-        return [count / max_count for count in data]
+# Input text
+# input_text = input("Enter text to analyze: ")
+#
+# # Convert input text to uppercase
+# input_text = input_text.upper()
+#
+# # Define the alphabet
+# alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+#
+# # Initialize a list to store character counts
+# char_counts = []
+#
+# # Count the characters in the input text
+# for char in alphabet:
+#     count = input_text.count(char)
+#     char_counts.append(count)
+#
+# # Find the character(s) with the maximum frequency
+# max_count = max(char_counts)
+# max_chars = [char for char, count in zip(alphabet, char_counts) if count == max_count]
+#
+# # Print the histogram
+# print("Character Histogram:")
+# for char, count in zip(alphabet, char_counts):
+#     normalized_count = int(count / max_count * 20)
+#     histogram_bar = '=' * normalized_count
+#     print(f"{char}: {histogram_bar}")
+#
+# # Print the character(s) with the highest frequency
+# print("\nCharacter(s) with the highest frequency:")
+# for char in max_chars:
+#     percent = char_counts[alphabet.index(char)] / sum(char_counts) * 100
+#     print(f"{char}: {percent:.2f}%")
+
+# def normalize(data, norm2Peak=True):
+#     """
+#     Normalize data based on the specified option.
+#
+#     Args:
+#         data: List of numbers representing character counts
+#         norm2Peak: Boolean, True for normalizing to peak, False for normalizing to area (default is True)
+#
+#     Returns:
+#         List of floats representing normalized counts
+#     """
+#     if not data:
+#         return []
+#
+#     if norm2Peak:
+#         max_count = max(data)
+#         normalized_data = [count / max_count for count in data]
+#     else:
+#         total_count = sum(data)
+#         normalized_data = [count / total_count for count in data]
+#
+#     return normalized_data
+#
+#
+# def plotBars(counts, alphabet, barLength=20):
+#     """
+#     Plot histogram bars and report character(s) with the maximum frequency.
+#
+#     Args:
+#         counts: List of numbers representing character counts
+#         alphabet: String representing the alphabet
+#         barLength: Optional integer specifying the maximum length of a bar (default is 20)
+#     """
+#     if not counts:
+#         return
+#
+#     # Normalize counts to peak for histogram
+#     peak_normalized_counts = normalize(counts, norm2Peak=True)
+#
+#     # Find the character(s) with the maximum frequency
+#     max_count = max(counts)
+#     max_chars = [char for char, count in zip(alphabet, counts) if count == max_count]
+#
+#     # Print the histogram
+#     print("Character Histogram:")
+#     for char, count in zip(alphabet, peak_normalized_counts):
+#         normalized_count = int(count * barLength)
+#         histogram_bar = '=' * normalized_count
+#         print(f"{char}: {histogram_bar}")
+#
+#     # Print the character(s) with the highest frequency and their percent of the sample
+#     print("\nCharacter(s) with the highest frequency:")
+#     for char in max_chars:
+#         percent = counts[alphabet.index(char)] / sum(counts) * 100
+#         print(f"{char}: {percent:.2f}%")
+#
+#
+# if __name__ == "__main__":
+#     # Input text
+#     input_text = input("Enter text to analyze: ")
+#
+#     # Convert input text to uppercase
+#     input_text = input_text.upper()
+#
+#     # Define the alphabet
+#     alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+#
+#     # Initialize a list to store character counts
+#     char_counts = []
+#
+#     # Count the characters in the input text
+#     for char in alphabet:
+#         count = input_text.count(char)
+#         char_counts.append(count)
+#
+#     # Call the plotBars function to visualize the character frequencies
+#     plotBars(char_counts, alphabet, barLength=20)
+
+# import random
+#
+#
+# def prompt_response(prompt, responses, suggest):
+#     print(prompt)
+#     response = input().lower()  # Convert the user input to lowercase
+#     cleaned_response = ''.join(char for char in response if char.isalnum() or char.isspace())
+#     if cleaned_response in responses:
+#         return True
+#     else:
+#         print(f'The correct response is "{suggest}"')
+#         print('Try again\n')
+#         return False
+#
+#
+# # Define a list of knock-knock jokes
+# jokes = [
+#     {
+#         'prompt1': "Knock-knock.",
+#         'response1': "Who's there?",
+#         'prompt2': "Lettuce.",
+#         'response2': "Lettuce who?",
+#         'punchline': "Lettuce in, it's cold out here!"
+#     },
+#     {
+#         'prompt1': "Knock-knock.",
+#         'response1': "Who's there?",
+#         'prompt2': "Tank.",
+#         'response2': "Tank who?",
+#         'punchline': "You're welcome!"
+#     },
+#     # Add more jokes as needed
+# ]
+#
+# # Shuffle the list of jokes randomly
+# random.shuffle(jokes)
+#
+# # Ask the user how many jokes they want to listen to
+# num_jokes = int(input("How many knock-knock jokes would you like to hear? "))
+#
+# for i in range(min(num_jokes, len(jokes))):
+#     joke = jokes[i]
+#     success1 = prompt_response(joke['prompt1'], ["who's there?"], joke['response1'])
+#     success2 = prompt_response(joke['prompt2'], [joke['response1']], joke['response2'])
+#     success3 = prompt_response(joke['punchline'], [joke['response2']], "You're welcome!")
+#
+#     if success1 and success2 and success3:
+#         print("Congratulations! You got the joke!\n")
+#     else:
+#         print("Sorry, you missed the joke. Let's try the next one!\n")
+
+# import random
+#
+#
+# # Function to check if the response is correct
+# def is_response_correct(response, correct_responses):
+#     cleaned_response = clean(response.lower())
+#     return cleaned_response in correct_responses
+#
+#
+# # Function to remove punctuation from a string
+# def clean(response):
+#     punctuation = "',.!?;\""
+#     return ''.join([c for c in response if c not in punctuation])
+#
+#
+# # List of knock-knock jokes
+# jokes = [
+#     ('Tank', "You're welcome!"),
+#     ('Lettuce', 'Lettuce in, it’s cold out here!'),
+#     ('Boo', "Don't cry, it's just a joke!"),
+#     # Add more jokes here
+# ]
+#
+# # Shuffle the order of jokes
+# random.shuffle(jokes)
+#
+# # Get the maximum number of jokes available
+# max_jokes = len(jokes)
+#
+# while True:
+#     try:
+#         # Ask the user how many jokes they want to hear
+#         n_jokes = int(input(f"How many jokes would you like me to tell (1-{max_jokes})? "))
+#
+#         if 1 <= n_jokes <= max_jokes:
+#             break
+#         else:
+#             print(f"Please enter a number between 1 and {max_jokes}.")
+#     except ValueError:
+#         print("Invalid input. Please enter a valid number.")
+#
+# # Take a slice of jokes based on the user's input
+# selected_jokes = jokes[:n_jokes]
+#
+# # Tell the selected jokes
+# for prompt, punchline in selected_jokes:
+#     print("Knock-knock.")
+#     input("Who's there? ")
+#     print(prompt)
+#     response = input(f"{prompt} who? ")
+#
+#     if is_response_correct(response, [punchline]):
+#         print("You're welcome!\n")
+#     else:
+#         print(f"Actually, the correct response is: {punchline}\n")
+#
+# print("That's all the jokes for today! Have a great day!")
+#
+# import random
+#
+#
+# def clean(response):
+#     """Removes punctuation from a string.
+#
+#   Args:
+#     response: A string.
+#
+#   Returns:
+#     A string without punctuation.
+#   """
+#     punctuation = "',.!?;\""
+#     response = response.strip()
+#     return ''.join([c for c in response if c not in punctuation])
+#
+#
+# def is_correct_response(response, responses):
+#     """Returns True if the response is in the list of correct responses.
+#
+#   Args:
+#     response: A string.
+#     responses: A list of strings.
+#
+#   Returns:
+#     True if the response is in the list of correct responses, False otherwise.
+#   """
+#     return response.lower() in [response.lower() for response in responses]
+#
+#
+# def tell_joke(joke):
+#     """Tells a joke.
+#
+#   Args:
+#     joke: A tuple containing the joke prompt and punchline.
+#   """
+#     joke_prompt, joke_punchline = joke
+#     print(joke_prompt)
+#     response = input("Who's there? ")
+#     while not is_correct_response(response, [joke_prompt.lower()]):
+#         print("Try again.")
+#         response = input("Who's there? ")
+#     print(joke_punchline)
+#
+#
+# def main():
+#     """Tells a random joke."""
+#     jokes = [
+#         ("Tank", "You're welcome!"),
+#         ("Boo", "Don't cry, it's just a joke"),
+#         ("Cows go", "No, cows go moo"),
+#         ("Alpaca", "Alpaca the suitcase, you load up the car"),
+#         ("Avenue", "Avenue knocked on this door before"),
+#         ("Dishes", "Dishes the police come out with their hands up"),
+#         ("Lettuce", "Lettuce in, it's cold out here!"),
+#     ]
+#
+#     # Shuffle the jokes
+#     random.shuffle(jokes)
+#
+#     # Get the number of jokes to tell
+#     print("There are {} available jokes.".format(len(jokes)))
+#     num_jokes = int(input("How many jokes would you like me to tell? "))
+#
+#     # Tell the jokes
+#     for i in range(num_jokes):
+#         tell_joke(jokes[i])
+#
+#
+# if __name__ == "__main__":
+#     main()
+
+# def create_resume(name, contact_info, summary, experience, education, skills):
+#     resume = f"Name: {name}\n"
+#     resume += f"Contact: {contact_info}\n\n"
+#
+#     resume += "Summary:\n"
+#     resume += f"{summary}\n\n"
+#
+#     resume += "Experience:\n"
+#     for i, exp in enumerate(experience, 1):
+#         resume += f"{i}. {exp['position']} at {exp['company']} ({exp['start_date']} - {exp['end_date']}):\n"
+#         resume += f"   - {exp['description']}\n"
+#
+#     resume += "\nEducation:\n"
+#     for i, edu in enumerate(education, 1):
+#         resume += f"{i}. {edu['degree']} in {edu['major']} at {edu['university']} ({edu['graduation_year']})\n"
+#
+#     resume += "\nSkills:\n"
+#     resume += ', '.join(skills)
+#
+#     return resume
+#
+#
+# # Example data
+# name = "John Doe"
+# contact_info = "123 Main St, City, State | john.doe@email.com | (123) 456-7890"
+# summary = "Results-driven professional with 5 years of experience in software development."
+# experience = [
+#     {
+#         "position": "Software Engineer",
+#         "company": "ABC Inc.",
+#         "start_date": "2018",
+#         "end_date": "2021",
+#         "description": "Developed web applications using Python and Django."
+#     },
+#     {
+#         "position": "Frontend Developer",
+#         "company": "XYZ Corp.",
+#         "start_date": "2016",
+#         "end_date": "2018",
+#         "description": "Designed and implemented user interfaces using HTML, CSS, and JavaScript."
+#     }
+# ]
+# education = [
+#     {
+#         "degree": "Bachelor of Science",
+#         "major": "Computer Science",
+#         "university": "University of XYZ",
+#         "graduation_year": "2016"
+#     }
+# ]
+# skills = ["Python", "Django", "HTML/CSS", "JavaScript"]
+#
+# # Generate the resume
+# generated_resume = create_resume(name, contact_info, summary, experience, education, skills)
+#
+# # Print the generated resume
+# print(generated_resume)
+
+import random
+
+
+def prompt_response(prompt, responses, suggest):
+    print(prompt)
+    response = input().replace("'", "").strip(".!?").lower()
+    if response in responses:
+        return True
     else:
-        # Normalize to area
-        total_count = sum(data)
-        return [count / total_count for count in data]
+        print(f'The correct response is "{suggest}"')
+        print("Try again\n")
+        return False
 
 
-def plotBars(counts, alphabet, barLength=20):
-    # Function to plot histogram bars
-    # Args:
-    #   counts: List of numbers representing character counts
-    #   alphabet: String representing the alphabet
-    #   barLength: Optional integer specifying the maximum length of a bar (default is 20)
+num_jokes = int(input("How many jokes would you like me to tell? "))
+while not prompt_response('Knock-knock',
+                          ["Who's there?", "Whos there?", "Who is there", "whos there?", "whos there", "who?", "who",
+                           "Whose there?", "Who's There?", "who's there?"], "Who's there?"):
+    continue
 
-    # Find the character(s) with the maximum frequency
-    max_count = max(counts)
-    max_chars = [char for char, count in zip(alphabet, counts) if count == max_count]
+jokes = [
+    ("Dwayne", "Dwayne who?"),
+    ("Cash", "Cash who?"),
+    ("Lettuce", "Lettuce who?"),
+    ("Boo", "Boo who?"),
+    ("Atch", "Atch who?"),
+    ("Hawaii", "Hawaii who?")
+]
+random.shuffle(jokes)
 
-    # Print the histogram
-    print("Character Histogram:")
-    for char, count in zip(alphabet, counts):
-        normalized_count = int(count * barLength)
-        histogram_bar = '=' * normalized_count
-        print(f"{char}: {histogram_bar}")
-
-    # Print the character(s) with the highest frequency
-    print("\nCharacter(s) with the highest frequency:")
-    for char in max_chars:
-        percent = counts[alphabet.index(char)] / sum(counts) * 100
-        print(f"{char}: {percent:.2f}%")
-
-
-def main():
-    # Input text
-    input_text = input("Enter text to analyze: ")
-
-    # Convert input text to uppercase
-    input_text = input_text.upper()
-
-    # Define the alphabet
-    alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
-    # Initialize a list to store character counts
-    char_counts = []
-
-    # Count the characters in the input text
-    for char in alphabet:
-        count = input_text.count(char)
-        char_counts.append(count)
-
-    # Normalize the data to peak
-    pkNormData = normalize(char_counts, norm2Peak=True)
-
-    # Normalize the data to area
-    aNormData = normalize(char_counts, norm2Peak=False)
-
-    # Print the histogram
-    plotBars(pkNormData, alphabet, barLength=20)
-
-
-if __name__ == "__main__":
-    main()
+for i in range(num_jokes):
+    joke = jokes[i]
+    while not prompt_response(joke[0], [joke[1]], joke[1]):
+        continue
