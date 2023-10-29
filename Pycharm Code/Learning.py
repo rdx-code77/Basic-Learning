@@ -119,6 +119,7 @@ Revisions:
     03:Calculating the average & then displaying it
 '''
 
+
 ### STEP 1: Announce, promt
 # announce
 # print("Program to compute the average of the numbers provided.")
@@ -750,37 +751,86 @@ Revisions:
 # # Print the generated resume
 # print(generated_resume)
 
-import random
+# import random
+#
+#
+# def prompt_response(prompt, responses, suggest):
+#     print(prompt)
+#     response = input().replace("'", "").strip(".!?").lower()
+#     if response in responses:
+#         return True
+#     else:
+#         print(f'The correct response is "{suggest}"')
+#         print("Try again\n")
+#         return False
+#
+#
+# num_jokes = int(input("How many jokes would you like me to tell? "))
+# while not prompt_response('Knock-knock',
+#                           ["Who's there?", "Whos there?", "Who is there", "whos there?", "whos there", "who?", "who",
+#                            "Whose there?", "Who's There?", "who's there?"], "Who's there?"):
+#     continue
+#
+# jokes = [
+#     ("Dwayne", "dwayne who", "Dwayne who?", "Dwayne the tub before I dwown"),
+#     ("Cash", "cash who", "Cash who?", "No thanks, I prefer peanuts."),
+#     ("Lettuce", "lettuce who", "Lettuce who?", "Lettuce in, it's cold out here!"),
+#     ("Boo", "boo who", "Boo who?", "Don't cry, it's just a joke!"),
+#     ("Atch", "atch who", "Atch who?", "Bless you!"),
+#     ("Hawaii", "hawaii who", "Hawaii who?", "I'm good. Hawaii you?")
+# ]
+# random.shuffle(jokes)
+#
+# for i in range(num_jokes):
+#     joke = jokes[i]
+#     while not prompt_response(joke[0], [joke[1]], joke[2]):
+#         continue
+#     print(joke[3])
+#     print("\nThanks for Playing")
 
+# Define English and French word lists
+english = ['chicken', 'salt', 'apple', 'earth', 'bean', 'water', 'milk']
+french = ['poulet', 'sel', 'pomme', 'terre', 'haricot', 'eau', 'lait']
 
-def prompt_response(prompt, responses, suggest):
-    print(prompt)
-    response = input().replace("'", "").strip(".!?").lower()
-    if response in responses:
-        return True
+# Initialize an empty dictionary to store user-added translations
+user_translations = {}
+
+while True:
+    word = input("Enter a word (or press Enter to exit): ").lower()
+
+    if not word:
+        break  # Exit the program if the user presses Enter
+
+    if word in english:
+        english_index = english.index(word)
+        translation = french[english_index]
+        print(f"The translation in French is: {translation}")
+    elif word in french:
+        french_index = french.index(word)
+        translation = english[french_index]
+        print(f"The translation in English is: {translation}")
     else:
-        print(f'The correct response is "{suggest}"')
-        print("Try again\n")
-        return False
+        print("Word not found in the dictionary.")
+        add_word = input("Would you like to add this word to the dictionary? (yes/no): ").lower()
 
+        if add_word == "yes":
+            lang = input("Is the word in English or French? ").lower()
+            if lang == "english":
+                english.append(word)
+                translation = input(f"Enter the translation of '{word}' in French: ").lower()
+                french.append(translation)
+            elif lang == "french":
+                french.append(word)
+                translation = input(f"Enter the translation of '{word}' in English: ").lower()
+                english.append(translation)
+            user_translations[word] = translation
+            print("Word and translation added to the dictionary.")
+        else:
+            print("Word not added to the dictionary.")
 
-num_jokes = int(input("How many jokes would you like me to tell? "))
-while not prompt_response('Knock-knock',
-                          ["Who's there?", "Whos there?", "Who is there", "whos there?", "whos there", "who?", "who",
-                           "Whose there?", "Who's There?", "who's there?"], "Who's there?"):
-    continue
+# Print the user-added translations
+if user_translations:
+    print("\nUser-Added Translations:")
+    for word, translation in user_translations.items():
+        print(f"{word.capitalize()} in French is {translation.capitalize()}")
 
-jokes = [
-    ("Dwayne", "Dwayne who?"),
-    ("Cash", "Cash who?"),
-    ("Lettuce", "Lettuce who?"),
-    ("Boo", "Boo who?"),
-    ("Atch", "Atch who?"),
-    ("Hawaii", "Hawaii who?")
-]
-random.shuffle(jokes)
-
-for i in range(num_jokes):
-    joke = jokes[i]
-    while not prompt_response(joke[0], [joke[1]], joke[1]):
-        continue
