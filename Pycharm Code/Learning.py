@@ -119,7 +119,6 @@ Revisions:
     03:Calculating the average & then displaying it
 '''
 
-
 ### STEP 1: Announce, promt
 # announce
 # print("Program to compute the average of the numbers provided.")
@@ -789,48 +788,392 @@ Revisions:
 #     print("\nThanks for Playing")
 
 # Define English and French word lists
-english = ['chicken', 'salt', 'apple', 'earth', 'bean', 'water', 'milk']
-french = ['poulet', 'sel', 'pomme', 'terre', 'haricot', 'eau', 'lait']
+# english = ['chicken', 'salt', 'apple', 'earth', 'bean', 'water', 'milk']
+# french = ['poulet', 'sel', 'pomme', 'terre', 'haricot', 'eau', 'lait']
+#
+# # Initialize an empty dictionary to store user-added translations
+# user_translations = {}
+#
+# while True:
+#     word = input("Enter a word (or press Enter to exit): ").lower()
+#
+#     if not word:
+#         break  # Exit the program if the user presses Enter
+#
+#     if word in english:
+#         english_index = english.index(word)
+#         translation = french[english_index]
+#         print(f"The translation in French is: {translation}")
+#     elif word in french:
+#         french_index = french.index(word)
+#         translation = english[french_index]
+#         print(f"The translation in English is: {translation}")
+#     else:
+#         print("Word not found in the dictionary.")
+#         add_word = input("Would you like to add this word to the dictionary? (yes/no): ").lower()
+#
+#         if add_word == "yes":
+#             lang = input("Is the word in English or French? ").lower()
+#             if lang == "english":
+#                 english.append(word)
+#                 translation = input(f"Enter the translation of '{word}' in French: ").lower()
+#                 french.append(translation)
+#             elif lang == "french":
+#                 french.append(word)
+#                 translation = input(f"Enter the translation of '{word}' in English: ").lower()
+#                 english.append(translation)
+#             user_translations[word] = translation
+#             print("Word and translation added to the dictionary.")
+#         else:
+#             print("Word not added to the dictionary.")
+#
+# # Print the user-added translations
+# if user_translations:
+#     print("\nUser-Added Translations:")
+#     for word, translation in user_translations.items():
+#         print(f"{word.capitalize()} in French is {translation.capitalize()}")
 
-# Initialize an empty dictionary to store user-added translations
-user_translations = {}
+# def twoSum(nums, target):
+#     for i in range(len(nums)):
+#         for j in range(i + 1, len(nums)):
+#             if nums[i] + nums[j] == target:
+#                 return [i, j]
+#     return []
+#
+#
+# print(twoSum([2, 7, 11, 15], 9))
 
-while True:
-    word = input("Enter a word (or press Enter to exit): ").lower()
+# def isPalindrome(x):
+#     """
+#         :type x: int
+#         :rtype: bool
+#         """
+#     if x < 0:
+#         return False
+#     inputNum = x
+#     newNum = 0
+#     while x > 0:
+#         newNum = newNum * 10 + x % 10
+#         x = x // 10
+#     return newNum == inputNum
+#
+# print(isPalindrome(13331))
 
-    if not word:
-        break  # Exit the program if the user presses Enter
+# def romanToInt(s):
+#     roman = {
+#         "I": 1,
+#         "V": 5,
+#         "X": 10,
+#         "L": 50,
+#         "C": 100,
+#         "D": 500,
+#         "M": 1000
+#     }
+#     total = 0
+#     s = s.replace("IV", "IIII").replace("IX", "VIIII")
+#     s = s.replace("XL", "XXXX").replace("XC", "LXXXX")
+#     s = s.replace("CD", "CCCC").replace("CM", "DCCCC")
+#     for symbol in s:
+#         total += roman[symbol]
+#     return total
+#
+#
+# print(romanToInt("MCMXCIV"))
 
-    if word in english:
-        english_index = english.index(word)
-        translation = french[english_index]
-        print(f"The translation in French is: {translation}")
-    elif word in french:
-        french_index = french.index(word)
-        translation = english[french_index]
-        print(f"The translation in English is: {translation}")
-    else:
-        print("Word not found in the dictionary.")
-        add_word = input("Would you like to add this word to the dictionary? (yes/no): ").lower()
+from random import shuffle
 
-        if add_word == "yes":
-            lang = input("Is the word in English or French? ").lower()
-            if lang == "english":
-                english.append(word)
-                translation = input(f"Enter the translation of '{word}' in French: ").lower()
-                french.append(translation)
-            elif lang == "french":
-                french.append(word)
-                translation = input(f"Enter the translation of '{word}' in English: ").lower()
-                english.append(translation)
-            user_translations[word] = translation
-            print("Word and translation added to the dictionary.")
-        else:
-            print("Word not added to the dictionary.")
 
-# Print the user-added translations
-if user_translations:
-    print("\nUser-Added Translations:")
-    for word, translation in user_translations.items():
-        print(f"{word.capitalize()} in French is {translation.capitalize()}")
+# def makeDeck():
+#     colors = list('rgby')
+#     numbers = list(range(1, 10))
+#     deck = []
+#     for color in colors:
+#         for number in numbers:
+#             deck.append(f'{number}{color}')
+#     return deck
+#
+#
+# def deal(deck, players=2, cards=7):
+#     hands = [[] for _ in range(players)]
+#     for _ in range(cards):
+#         for hand in hands:
+#             hand.append(deck.pop())
+#     pile = [deck.pop()]
+#     return hands, pile
+#
+#
+# def draw(deck, playerHand):
+#     card = deck.pop()
+#     playerHand.append(card)
+#     return card
+#
+#
+# def discard(pile, playerHand, playerCard):
+#     pile.append(playerCard)
+#     playerHand.remove(playerCard)
+#
+#
+# def match(pile, playerHand):
+#     top_card = pile[-1]
+#     for card in playerHand:
+#         if card[0] == top_card[0] or card[1] == top_card[1]:
+#             return card
+#     return None
+#
+#
+# def play(deck, pile, playerHand):
+#     matching_card = match(pile, playerHand)
+#     if matching_card:
+#         discard(pile, playerHand, matching_card)
+#     else:
+#         draw_card = draw(deck, playerHand)
+#         matching_card = match(pile, playerHand)
+#         if matching_card:
+#             discard(pile, playerHand, matching_card)
+#     return len(playerHand) == 0
+#
+#
+# def supervisor(deck, pile, hands, pause=True):
+#     while True:
+#         for i, hand in enumerate(hands):
+#             if pause:
+#                 input(' ...\n')
+#             if play(deck, pile, hand):
+#                 print(f"\nPlayer #{i} wins!")
+#                 return i
+#             print(f'PLAYER #{i}:\n\thand= {hand}')
+#             print(f'\ttop of pile: {pile[-3:]}')
+#             print(f'\tend of deck: {deck[-4:]}', end='')
+#             print(f'\n#{i}: end of round hand= {hand}')
+#             print(f'          top of pile= {pile[-1]}\n')
+#
+#
+# def initialize(nPlayers, nCards):
+#     deck = makeDeck()
+#     shuffle(deck)
+#     hands, pile = deal(deck, nPlayers, nCards)
+#     return deck, pile, hands
+#
+#
+# if __name__ == "__main__":  #
+#     '''
+#     UNCOMMENT THE LINES BELOW TO RUN A SMALL SIMULATION OF THE GAME
+#     Larger simulations are possible by increasing the number of players
+#     and/or the number of cards per hand.  The game is limited by the
+#     number of cards in the deck.  The product of the number of players
+#     and the number of cards per hand must be less than 34 to get a game started.
+#     For example, dealing 8-card hands to 4 players would leave only 3 cards in
+#     the deck to draw from and the deck may need to be replenished soon after
+#     the game starts.  To handle larger games, you can modify play() can call
+#     makeDeck() and shuffle() to get cards to add to the existing deck when its
+#     length is 1.
+#     '''
+#
+#     deck, pile, hands = initialize(2, 3)  # two players / 3 cards
+#     print(f'{hands= }')
+#     print(f'{pile= }\n')
+#     winner = supervisor(deck, pile, hands, False)  # True to pause before each play
+#     print(f'\nWinning hand is #{winner}!\n')
+#     print('\n*** RESULTS ***\n')
+#     for i, hand in enumerate(hands):
+#         print(f'player #{i}: {hand= } {"WINNER!" if not hand else ""}')
+#     input("The game is over.  Press Enter to continue with formal tests.")
+#
+#     '''
+#     FORMAL FUNCTION TESTING
+#     '''
+#     ### MAKEDECK TESTS ###
+#     deck = makeDeck()
+#     s = "makeDeck() failed!"
+#     # two different methods to separate numbers and colors for all cards
+#     # map() or list comprehension ... which is best?
+#     _c = [c for n, c in deck]  # list comprehension for colors
+#     _c = list(map(lambda x: x[-1], deck))  # lambda returns the color of each card
+#     _n = [n for n, c in deck]  # list comprehension for numbers
+#     _n = list(map(lambda x: x[0], deck))  # lambda returns the number of each card
+#
+#     assert len(deck) == 36, f'{s} deck not 36 cards long.'  # check deck length
+#     # check number of each color
+#     assert _c.count('r') == _c.count('g') == _c.count('b') == _c.count('y') == 9, \
+#         f"{s} bad color"
+#     # check number of each digit
+#     assert _n.count('1') == _n.count('2') == _n.count('3') == 4, f'{s} bad digit 1..3'
+#     assert _n.count('4') == _n.count('5') == _n.count('6') == 4, f'{s} bad digit 4..6'
+#     assert _n.count('7') == _n.count('8') == _n.count('9') == 4, f'{s} bad digit 7..9'
+#     print("makedeck() tests passed!\n------------------------\n")
+#
+#     ### DEAL TESTS ###
+#     s = "deal() failed!"
+#     deck = ['xx', '4z', '4y', '4x', '3z', '3y', '3x', '2z', '2y', '2x', '1z', '1y', '1x']
+#     [hx, hy, hz], pile = deal(deck, 3, 4)  # 3 players 4 cards each
+#     assert deck == [], f"{s} bad deck\n\t{card=}\n\t{deck=}\n\t{hand=}"
+#     assert set(hx) == {'1x', '2x', '3x', '4x'}, f"{s} bad hand #1\n\t{deck=}\n\t{hx=}"
+#     assert set(hy) == {'1y', '2y', '3y', '4y'}, f"{s} bad hand #2\n\t{deck=}\n\t{hy=}"
+#     assert set(hz) == {'1z', '2z', '3z', '4z'}, f"{s} bad hand #3\n\t{deck=}\n\t{hz=}"
+#     assert pile == ['xx'], f"{s} bad pile #3\n\t{deck=}\n\t{pile=}"
+#     print("deal() tests passed!\n--------------------\n")
+#
+#     #### MATCH TESTS ####
+#     s = "match() failed!"
+#     pile, hand = ['6g', '2r'], ['3b', '2y']  # number match
+#     assert match(pile, hand) == '2y', f"Number {s}\n\t{pile=}\n\t{hand=}"
+#     pile, hand = ['6g', '2r'], ['3r', '4y']  # color match
+#     assert match(pile, hand) == '3r', f"Color {s}\n\t{pile=}\n\t{hand=}"
+#     pile, hand = ['6g', '2r'], ['6g', '7y']  # no match
+#     assert match(pile, hand) == None, f"{s}\n\t{pile=}\n\t{hand=}"
+#     print(f"match() tests passed!\n---------------------\n")
+#
+#     #### DISCARD TESTS ####
+#     s = "discard() failed!"
+#     pile, hand, card = ['6g', '2r'], ['7r', '2y', '3b'], '2y'  # test data
+#     result = discard(pile, hand, card)
+#     _rpt = f"\n\t{card=}\n\t{pile=}\n\t{hand=}"
+#     assert pile == ['6g', '2r', '2y'], f"{s} bad pile" + _rpt
+#     assert set(hand) == {'7r', '3b'}, f"{s} bad hand" + _rpt
+#     assert result == None, f"{s} bad return value" + _rpt
+#     print("discard() tests passed!\n-----------------------\n")
+#
+#     #### DRAW TESTS ####
+#     s = "draw() failed!"
+#     deck, hand = ['6g', '2r', '1y'], ['7r', '3b']  # test data
+#     result = draw(deck, hand)
+#     _rpt = f"\n\t{deck=}\n\t{hand=}"
+#     assert deck == ['6g', '2r'], f"{s} bad deck" + _rpt
+#     assert set(hand) == {'7r', '3b', '1y'}, f"{s} bad hand" + _rpt
+#     assert result == '1y', f"{s} bad return value\n\t{result=}" + _rpt
+#     print("draw() tests passed!\n--------------------\n")
+#
+#     ### PLAY TESTS ###
+#     s = "play() failed!"
+#     # color match continue
+#     deck, pile, hand = ['6g', '2r', '1y'], ['1r', '3b'], ['7r', '2b', '9y']
+#     result = play(deck, pile, hand)
+#     _rpt = f"\n\t{deck=}\n\t{pile=}\n\t{hand=}"
+#     assert deck == ['6g', '2r', '1y'], f"{s} bad deck" + _rpt
+#     assert pile == ['1r', '3b', '2b'], f"{s} bad pile" + _rpt
+#     assert set(hand) == {'7r', '9y'}, f"{s} bad hand" + _rpt
+#     assert result == False, f"{s} bad result" + _rpt
+#     # number match continue
+#     deck, pile, hand = ['6g', '2r', '1y'], ['1r', '3b'], ['9y', '3r', '6y']
+#     result = play(deck, pile, hand)
+#     _rpt = f"\n\t{deck=}\n\t{pile=}\n\t{hand=}"
+#     assert deck == ['6g', '2r', '1y'], f"{s} bad deck" + _rpt
+#     assert pile == ['1r', '3b', '3r'], f"{s} bad pile" + _rpt
+#     assert set(hand) == {'6y', '9y'}, f"{s} bad hand" + _rpt
+#     assert result == False, f"{s} bad result" + _rpt
+#     # no match continue
+#     deck, pile, hand = ['6g', '2r', '1y'], ['1r', '3b'], ['7r', '9y']
+#     result = play(deck, pile, hand)
+#     _rpt = f"\n\t{deck=}\n\t{pile=}\n\t{hand=}"
+#     assert deck == ['6g', '2r'], f"{s} bad deck" + _rpt
+#     assert pile == ['1r', '3b'], f"{s} bad pile" + _rpt
+#     assert set(hand) == {'9y', '7r', '1y'}, f"{s} bad hand" + _rpt
+#     assert result == False, f"{s} bad result" + _rpt
+#     # color match done
+#     deck, pile, hand = ['6g', '2r', '1y'], ['1r', '3b'], ['2b']
+#     result = play(deck, pile, hand)
+#     _rpt = f"\n\t{deck=}\n\t{pile=}\n\t{hand=}"
+#     assert deck == ['6g', '2r', '1y'], f"{s} bad deck" + _rpt
+#     assert pile == ['1r', '3b', '2b'], f"{s} bad pile" + _rpt
+#     assert hand == [], f"{s} bad hand" + _rpt
+#     assert result == True, f"{s} bad result" + _rpt
+#     print("play() tests passed!\n--------------------\n")
 
+# mess = [['o', 'c', 'h', 'c', 'a', 64, 'd'],
+#         ['o', 'o', 91, 'y', 'y', 'e', 'i'],
+#         ['u', 'r', 'o', 'u', 'y', 46, 'e'],
+#         ['u', 'y', 'e', 'r', 19, 't', 't'],
+#         ['a', 'h', 55, 's', 'n', 'i', 's'],
+#         [27, 'u', 'r', 't', 'r', 'r', 'n'],
+#         [72, 'a', 'c', 'p', 't', 'g', 'm']]
+#
+# # Rotation function
+# def rotate(lst):
+#     int_indices = [i for i, x in enumerate(lst) if isinstance(x, int)]
+#     for idx in int_indices:
+#         while lst[idx] != idx + 1:
+#             popped = lst.pop(idx)
+#             lst.insert(0, popped)
+#
+# # Step 1: Rotation for alignment
+# for sublist in mess:
+#     rotate(sublist)
+#
+# # Step 2: Sort and build words
+# words = []
+# for sublist in sorted(mess, key=lambda x: [i for i, c in enumerate(x) if isinstance(c, int)]):
+#     word = ''.join(str(c) if isinstance(c, int) else c for c in sublist)
+#     words.append(word)
+#
+# # Display the discovered words
+# for word in words:
+#     print(word)
+
+import csv
+from datetime import datetime
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+from matplotlib.ticker import FuncFormatter
+
+# Function to read data from CSV and convert values
+def read_and_convert_data(filename):
+    data = []
+
+    with open(filename, 'r') as file:
+        reader = csv.reader(file)
+        header = next(reader)  # Skip header row
+
+        for row in reader:
+            commodity, date_str, farm, atlanta, chicago, nyc, la = row
+
+            # Convert date to datetime object
+            date = datetime.strptime(date_str, "%m/%d/%Y")
+
+            # Remove dollar signs and spaces from prices
+            prices = [float(price.replace('$', '').strip()) for price in [atlanta, chicago, nyc, la]]
+
+            data.append([commodity, date, farm] + prices)
+
+    return data
+
+
+# Function to filter data for a specific commodity and location
+def filter_data(data, commodity, location):
+    filtered_data = [record for record in data if record[0] == commodity and record[2] == location]
+    return filtered_data
+
+# Function to plot a line graph
+def plot_line_graph(dates, prices, commodity, location):
+    fig, ax = plt.subplots()
+    ax.plot(dates, prices, label=f'{commodity} Prices in {location}')
+
+    # Format x-axis as dates
+    ax.xaxis.set_major_locator(mdates.YearLocator())
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
+
+    # Add labels and legend
+    ax.set_xlabel('Date')
+    ax.set_ylabel('Price')
+    ax.set_title(f'{commodity} Prices Over Time ({location})')
+    ax.legend()
+
+    # Show the plot
+    plt.show()
+
+# Example usage
+filename = 'produce_csv.csv'
+data = read_and_convert_data(filename)
+
+# Choose a commodity and location for filtering
+commodity_to_filter = 'Oranges'
+location_to_filter = 'Chicago'
+
+# Filter data
+filtered_data = filter_data(data, commodity_to_filter, location_to_filter)
+
+# Separate dates and prices for plotting
+dates = [record[1] for record in filtered_data]
+prices = [record[3] for record in filtered_data]
+
+# Plot the line graph
+plot_line_graph(dates, prices, commodity_to_filter, location_to_filter)
