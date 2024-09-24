@@ -28,3 +28,9 @@ average = total / number_count
 
 ### STEP 6: Display the average
 print(f"The average is {average}.")
+
+
+
+
+
+

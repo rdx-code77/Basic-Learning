@@ -15,7 +15,12 @@ Revisions:
 print("Program to count coins and calculate values\n")
 
 ### STEP 2: Get the input string from the user
-input_string = input("Enter the coin string: ")
+while True:
+    input_string = input("Enter the coin string: ")
+    if all(coin in {'p', 'n', 'd', 'q', 'h'} for coin in input_string):
+        break
+    else:
+        print("Invalid input. Please enter a valid coin string (p, n, d, q, h).")
 
 ### STEP 3: Initialize dictionaries to store coin counts and values
 coin_counts = {'p': 0, 'n': 0, 'd': 0, 'q': 0, 'h': 0}

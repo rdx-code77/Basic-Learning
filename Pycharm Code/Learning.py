@@ -1109,71 +1109,237 @@ from random import shuffle
 # for word in words:
 #     print(word)
 
-import csv
-from datetime import datetime
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
-from matplotlib.ticker import FuncFormatter
+# import csv
+# from datetime import datetime
+# import matplotlib.pyplot as plt
+# import matplotlib.dates as mdates
+# from matplotlib.ticker import FuncFormatter
+#
+# # Function to read data from CSV and convert values
+# def read_and_convert_data(filename):
+#     data = []
+#
+#     with open(filename, 'r') as file:
+#         reader = csv.reader(file)
+#         header = next(reader)  # Skip header row
+#
+#         for row in reader:
+#             commodity, date_str, farm, atlanta, chicago, nyc, la = row
+#
+#             # Convert date to datetime object
+#             date = datetime.strptime(date_str, "%m/%d/%Y")
+#
+#             # Remove dollar signs and spaces from prices
+#             prices = [float(price.replace('$', '').strip()) for price in [atlanta, chicago, nyc, la]]
+#
+#             data.append([commodity, date, farm] + prices)
+#
+#     return data
+#
+#
+# # Function to filter data for a specific commodity and location
+# def filter_data(data, commodity, location):
+#     filtered_data = [record for record in data if record[0] == commodity and record[2] == location]
+#     return filtered_data
+#
+# # Function to plot a line graph
+# def plot_line_graph(dates, prices, commodity, location):
+#     fig, ax = plt.subplots()
+#     ax.plot(dates, prices, label=f'{commodity} Prices in {location}')
+#
+#     # Format x-axis as dates
+#     ax.xaxis.set_major_locator(mdates.YearLocator())
+#     ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
+#
+#     # Add labels and legend
+#     ax.set_xlabel('Date')
+#     ax.set_ylabel('Price')
+#     ax.set_title(f'{commodity} Prices Over Time ({location})')
+#     ax.legend()
+#
+#     # Show the plot
+#     plt.show()
+#
+# # Example usage
+# filename = 'produce_csv.csv'
+# data = read_and_convert_data(filename)
+#
+# # Choose a commodity and location for filtering
+# commodity_to_filter = 'Oranges'
+# location_to_filter = 'Chicago'
+#
+# # Filter data
+# filtered_data = filter_data(data, commodity_to_filter, location_to_filter)
+#
+# # Separate dates and prices for plotting
+# dates = [record[1] for record in filtered_data]
+# prices = [record[3] for record in filtered_data]
+#
+# # Plot the line graph
+# plot_line_graph(dates, prices, commodity_to_filter, location_to_filter)
 
-# Function to read data from CSV and convert values
-def read_and_convert_data(filename):
-    data = []
+# import pandas as pd
+#
+# # Read the CSV file with a specific encoding (replace 'latin1' with the appropriate encoding)
+# df = pd.read_csv('C:/Users/saiku/OneDrive/Desktop/businesses.csv', encoding='latin1')
+#
+# # Export to a new CSV file with UTF-8 encoding
+# df.to_csv('C:/Users/saiku/OneDrive/Desktop/businesses_utf8.csv', encoding='utf-8', index=False)
 
-    with open(filename, 'r') as file:
-        reader = csv.reader(file)
-        header = next(reader)  # Skip header row
+# import csv
+#
+# # Open the original CSV file
+# with open('C:/Users/saiku/OneDrive/Desktop/businesses.csv', 'r', encoding='latin1') as input_file:
+#     # Read the CSV data
+#     csv_reader = csv.reader(input_file)
+#     data = list(csv_reader)
+#
+# # Save data to a new CSV file with UTF-8 encoding
+# with open('C:/Users/saiku/OneDrive/Desktop/businesses_utf8.csv', 'w', encoding='utf-8', newline='') as output_file:
+#     csv_writer = csv.writer(output_file)
+#     csv_writer.writerows(data)
 
-        for row in reader:
-            commodity, date_str, farm, atlanta, chicago, nyc, la = row
+'''
+Program: Final Project
+Filename: finalProject-tRaj-00.py
+Author: Tushar Raj
+Description: Importing the CSV file and filtering the record as per need and then drawing the graph using the plotly
+Revisions: No revisions made
+'''
 
-            # Convert date to datetime object
-            date = datetime.strptime(date_str, "%m/%d/%Y")
-
-            # Remove dollar signs and spaces from prices
-            prices = [float(price.replace('$', '').strip()) for price in [atlanta, chicago, nyc, la]]
-
-            data.append([commodity, date, farm] + prices)
-
-    return data
+import csv  # importing to read from csv
+from datetime import datetime  # to handle datetime data from excel
+import plotly.offline as plty  # importing plotly to draw graphs
+import plotly.graph_objs as pg
 
 
-# Function to filter data for a specific commodity and location
-def filter_data(data, commodity, location):
-    filtered_data = [record for record in data if record[0] == commodity and record[2] == location]
-    return filtered_data
+# There are no literal constraint
+# There are no class defined
 
-# Function to plot a line graph
-def plot_line_graph(dates, prices, commodity, location):
-    fig, ax = plt.subplots()
-    ax.plot(dates, prices, label=f'{commodity} Prices in {location}')
+def average(a):
+    '''
+    Parameters
+    ----------
+    a : list
+    takes price value from list to calculate the average.
 
-    # Format x-axis as dates
-    ax.xaxis.set_major_locator(mdates.YearLocator())
-    ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
+    Returns
+    -------
+    flaat type
+    returns the average of the price.
 
-    # Add labels and legend
-    ax.set_xlabel('Date')
-    ax.set_ylabel('Price')
-    ax.set_title(f'{commodity} Prices Over Time ({location})')
-    ax.legend()
+    '''
+    length = len(a)
+    return 0 if length == 0 else float(sum(a) / length)  # returns average
 
-    # Show the plot
-    plt.show()
 
-# Example usage
-filename = 'produce_csv.csv'
-data = read_and_convert_data(filename)
+print("**** Final project ****\n\n")
 
-# Choose a commodity and location for filtering
-commodity_to_filter = 'Oranges'
-location_to_filter = 'Chicago'
+file = csv.reader(open('produce_csv.csv', 'r'))  # Opening the produce csv and reading it
+data = [i for i in file]  # iterating each line and storing it as list
 
-# Filter data
-filtered_data = filter_data(data, commodity_to_filter, location_to_filter)
+modList = []  # creating the empty list to store modified list
+for i in data:  # iterating through the list
+    changedList = list()
+    for j in i:
+        if "$" in j:
+            changedList.append(float(j.replace("$", "")))  # replacing the $ sign with null value
+        elif "/" in j:
+            changedList.append(datetime.strptime(j, '%m/%d/%Y'))  # changing the sting format of date into date format
+        else:
+            changedList.append(j)
+    modList.append(changedList)  # appending the changed list into master list
 
-# Separate dates and prices for plotting
-dates = [record[1] for record in filtered_data]
-prices = [record[3] for record in filtered_data]
+locations = modList.pop(0)[2:]  # removing the header
+records = []  # creating an empty list
+for row in modList:
+    newRow = row[:2]  # storing the first 2 row in new variable
+    for loc, price in zip(locations, row[2:]):  # location and prices and appended with the first two rows
+        records.append(newRow + [loc, price])  # new data is added to record
 
-# Plot the line graph
-plot_line_graph(dates, prices, commodity_to_filter, location_to_filter)
+try:  # catching the index exception when user enter out of bound index
+    city = sorted(locations)  # sorting the city in file
+    comodity = sorted(set([i[0] for i in modList]))  # retrieving and sorting the product
+    dates = sorted(set([i[1] for i in modList]))  # retreving and sorting the dates
+
+    ### Dispalying and accepting user input for city
+    [print(f"<{i + 1}> {j}") for i, j in enumerate(city)]
+    a = input("Enter location numbers separated by spaces:  ").split()
+    city_value = [city[int(i) - 1] for i in a]
+    city_value_print = city_value
+    print("\n")
+
+    ### Dispalying and accepting user input for Product
+    [print(f"<{i + 1}> {j}") for i, j in enumerate(comodity)]
+    b = input("Enter product numbers separated by spaces:  ").split()
+    comodity_name = [comodity[int(i) - 1] for i in b]
+    print("\n")
+
+    ### Dispalying and accepting user input for Dates
+    [print(f"<{i + 1}> {str(j).split()[0]}") for i, j in enumerate(dates)]
+    print(f"Earliest available date is: {min(dates)}")
+    print(f"Latest available date is: {max(dates)}")
+    c = input("Enter start/end date numbers separated by a space:  ").split()
+    dates_value = [dates[int(i) - 1] for i in c]
+    print("\n")
+
+    # Creating the final list based for user selected condition
+    final_list_graph = [i for i in records if (
+                (i[0] in comodity_name) and (min(dates_value) <= i[1] <= max(dates_value)) and (
+                    i[2] in city_value_print))]
+    # Creating Graph
+    final_list_graph_dict = {i: [] for i in
+                             city_value}  # creating dictonary where location is the key as it is the filtering condition of graph
+    for i in final_list_graph_dict:
+        for j in comodity_name:
+            final_list_graph_dict[i].append(average([k[3] for k in final_list_graph if k[0] == j and k[
+                2] == i]))  # creating dictonary where location is the key as it is the filtering condition of graph and appending average and other
+
+    graph_value = []
+    for city_value, average in final_list_graph_dict.items():
+        graph_value.append(pg.Bar(x=comodity_name, y=average, name=city_value))
+
+    ### Print the values for which graph is being generated
+    print("Values for which graph will be generated:\n")
+    print("Selected City :")  ### Print the city for which graph is being generated
+    [print(i) for i in city_value_print]
+    print("\nSelected Product :")  ### Print the Product for which graph is being generated
+    [print(i) for i in comodity_name]
+    print(
+        f"\nSelected dates range: {min(dates_value)} - {max(dates_value)}\n")  ### Print the dates for which graph is being generated
+
+    print(f'{len(final_list_graph)} records have been selected.\n')
+    print("RECORDS SELECTED  ....\n")
+    [print(f"<{i}> {j}") for i, j in enumerate(final_list_graph)]
+
+    my_dict = {}  # creating a empty dictionary
+    for loc in final_list_graph:
+        if (loc[0] + "-" + loc[2] in my_dict):  # creating product and place as one unit and storing as key
+            my_dict[loc[0] + "-" + loc[2]] = my_dict[loc[0] + "-" + loc[2]] + 1  # incrementing the count if its there
+        elif (loc[0] + "-" + loc[2] not in my_dict):
+            my_dict[loc[0] + "-" + loc[2]] = 1  # assigning the value as one if its not there and encountered as 1
+
+    for loc in my_dict:
+        print(f"{str(my_dict[loc])} prices for {loc.split('-')[0]} in {loc.split('-')[1]}")  # printing the result
+
+    graph_header = 'Produce Prices from ' + datetime.strftime(min(dates_value),
+                                                              "%Y-%m-%d") + ' through ' + datetime.strftime(
+        max(dates_value), "%Y-%m-%d")
+    graph_layout = pg.Layout(barmode='group',
+                             title=dict(text='<b>' + graph_header + '</b>', x=0.50, xanchor="center"),
+                             # formatting title
+                             xaxis=dict(title='Product'),  # formatting x-axis
+                             yaxis=dict(title='Average Price', tickprefix="$", tickformat=".2f"),  # formatting y-axis
+                             font=dict(family="sans-serif", size=20, color="#FF0000"),  # formatting fond
+                             paper_bgcolor='rgb(255,255,255)',  # putting screen background color
+                             plot_bgcolor='rgba(0,0,0)'  # putting graph background color
+                             )
+
+    # Plot the graph and saving it in a html format
+    fig = pg.Figure(data=graph_value, layout=graph_layout)
+    plty.plot(fig, filename='tushar_final_project.html')
+
+    print("\n\n**** Final Project Ended****\n\n")
+
+except IndexError:  # catching the Index exception
+    print("Entered index value is not in list. Please Try again !")

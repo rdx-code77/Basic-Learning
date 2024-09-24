@@ -1,0 +1,78 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.wraper{
+	width:1170px;
+	margin: auto;
+
+}
+header{
+	background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url(agriculture-arable-barley-265216.jpg);
+	height: 100vh;
+	-webkit-background-size:cover;
+	background-size: cover;
+	background-position: center center;
+	position: relative;
+}
+.area{
+	float: right;
+	list-style: none;
+	margin-top: 30px;
+}
+.area li{
+	display: inline-block;
+}
+.area li a{
+	color: rgb(146, 5, 5);
+	text-decoration: none;
+	padding: 10px 20px;
+	font-family: poppins;
+	font-size: 20px;
+}
+.area li a:hover{
+	background: #fff;
+	color: #333;
+}
+ul li.active a{
+	background-color: #fff;
+	color:#000;
+}
+.logo img{
+	width: 100px;
+	float: left;
+	height: auto;
+}
+.wlcmtext{
+	position: absolute;
+	width: 600px;
+	height: 300px;
+	margin: 20% 30%;
+	text-align: center;
+}
+.wlcmtext h1{
+	text-align: center;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 60px;
+
+}
+.wlcmtext a{
+	border: 1px solid #fff;
+	padding: 10px 25px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 14px;
+	margin-top: 20px;
+	display: inline-block;
+	color: #fff;
+}
+.wlcmtext a:hover{
+
+	background: #fff;color: #333;
+	}
+.img{
+	
+	background-image:url("image/bck.jpg");
+	
+}
